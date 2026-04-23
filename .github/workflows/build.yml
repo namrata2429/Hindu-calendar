@@ -62,6 +62,7 @@ jobs:
       - name: Build Release APK
         run: |
           ./gradlew assembleRelease \
+            -Pandroid.injected.signing.store.type=JKS \
             -Pandroid.injected.signing.store.file=$GITHUB_WORKSPACE/hindu_calendar.keystore \
             -Pandroid.injected.signing.store.password="${{ secrets.KEYSTORE_PASSWORD }}" \
             -Pandroid.injected.signing.key.alias=hinduapp \
