@@ -36,12 +36,10 @@ jobs:
 
       - name: Install Gradle wrapper
         run: |
-          # Download and install Gradle 8.0
           wget -q https://services.gradle.org/distributions/gradle-8.2-bin.zip -O gradle.zip
           unzip -q gradle.zip -d $HOME/gradle-install
           export GRADLE_CMD=$HOME/gradle-install/gradle-8.2/bin/gradle
           echo "$HOME/gradle-install/gradle-8.2/bin" >> $GITHUB_PATH
-          # Generate wrapper using installed gradle
           $GRADLE_CMD wrapper --gradle-version 8.2 --distribution-type bin
 
       - name: Create local.properties
@@ -50,11 +48,20 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Build Debug APK
-        run: ./gradlew assembleDebug --stacktrace
+      - name: Decode Keystore
+        run: |
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > hindu_calendar.keystore
 
-      - name: Upload APK
+      - name: Build Release APK
+        run: |
+          ./gradlew assembleRelease \
+            -Pandroid.injected.signing.store.file=$GITHUB_WORKSPACE/hindu_calendar.keystore \
+            -Pandroid.injected.signing.store.password=Hindu@2026 \
+            -Pandroid.injected.signing.key.alias=hinduapp \
+            -Pandroid.injected.signing.key.password=Hindu@2026
+
+      - name: Upload Signed APK
         uses: actions/upload-artifact@v4
         with:
-          name: HinduPanchang-2026-debug
-          path: app/build/outputs/apk/debug/app-debug.apk
+          name: HinduPanchang-2026-release
+          path: app/build/outputs/apk/release/app-release.apk
