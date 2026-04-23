@@ -37,12 +37,12 @@ jobs:
       - name: Install Gradle wrapper
         run: |
           # Download and install Gradle 8.0
-          wget -q https://services.gradle.org/distributions/gradle-8.0-bin.zip -O gradle.zip
+          wget -q https://services.gradle.org/distributions/gradle-8.2-bin.zip -O gradle.zip
           unzip -q gradle.zip -d $HOME/gradle-install
-          export GRADLE_CMD=$HOME/gradle-install/gradle-8.0/bin/gradle
-          echo "$HOME/gradle-install/gradle-8.0/bin" >> $GITHUB_PATH
+          export GRADLE_CMD=$HOME/gradle-install/gradle-8.2/bin/gradle
+          echo "$HOME/gradle-install/gradle-8.2/bin" >> $GITHUB_PATH
           # Generate wrapper using installed gradle
-          $GRADLE_CMD wrapper --gradle-version 8.0 --distribution-type bin
+          $GRADLE_CMD wrapper --gradle-version 8.2 --distribution-type bin
 
       - name: Create local.properties
         run: echo "sdk.dir=$HOME/android-sdk" > local.properties
