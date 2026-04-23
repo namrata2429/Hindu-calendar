@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Hindu Panchang Calendar</string>
+    <string name="select_language">Select Your Language</string>
+    <string name="language_english">English</string>
+    <string name="language_hindi">हिन्दी</string>
+    <string name="language_odia">ଓଡ଼ିଆ</string>
+    <string name="upcoming_events">Upcoming Events</string>
+    <string name="filter_all">All</string>
+    <string name="filter_festivals">Festivals</string>
+    <string name="filter_vrat">Vrat</string>
+    <string name="filter_ekadashi">Ekadashi</string>
+    <string name="change_language">Change Language</string>
+    <string name="event_details">Event Details</string>
+    <string name="back">Back</string>
+    <string name="vikram_samvat">Vikram Samvat 2083</string>
+    <string name="year_2026">2026</string>
+</resources>

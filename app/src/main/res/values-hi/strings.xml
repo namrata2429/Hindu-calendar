@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">हिंदू पंचांग कैलेंडर</string>
+    <string name="select_language">अपनी भाषा चुनें</string>
+    <string name="upcoming_events">आगामी त्योहार और व्रत</string>
+    <string name="filter_all">सभी</string>
+    <string name="filter_festivals">त्योहार</string>
+    <string name="filter_vrat">व्रत</string>
+    <string name="filter_ekadashi">एकादशी</string>
+    <string name="change_language">भाषा बदलें</string>
+    <string name="event_details">विवरण</string>
+    <string name="vikram_samvat">विक्रम संवत 2083</string>
+</resources>

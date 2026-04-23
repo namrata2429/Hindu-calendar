@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ହିନ୍ଦୁ ପଞ୍ଚାଙ୍ଗ କ୍ୟାଲେଣ୍ଡର</string>
+    <string name="select_language">ଆପଣଙ୍କ ଭାଷା ବଛନ୍ତୁ</string>
+    <string name="upcoming_events">ଆସନ୍ତା ପର୍ବ ଓ ବ୍ରତ</string>
+    <string name="filter_all">ସବୁ</string>
+    <string name="filter_festivals">ପର୍ବ</string>
+    <string name="filter_vrat">ବ୍ରତ</string>
+    <string name="filter_ekadashi">ଏକାଦଶୀ</string>
+    <string name="change_language">ଭାଷା ବଦଳାନ୍ତୁ</string>
+    <string name="event_details">ବିବରଣ</string>
+    <string name="vikram_samvat">ବିକ୍ରମ ସମ୍ବତ ୨୦୮୩</string>
+</resources>

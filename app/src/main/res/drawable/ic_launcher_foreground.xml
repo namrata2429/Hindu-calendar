@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Background circle -->
+    <path
+        android:fillColor="#D4521C"
+        android:pathData="M0,0 L108,0 L108,108 L0,108 Z"/>
+    <!-- Om symbol simplified as a star/lotus shape -->
+    <path
+        android:fillColor="#F5C842"
+        android:pathData="M54,18 L58,42 L82,36 L66,56 L90,62 L68,70 L76,94 L54,80 L32,94 L40,70 L18,62 L42,56 L26,36 L50,42 Z"/>
+    <path
+        android:fillColor="#D4521C"
+        android:pathData="M54,36 L57,46 L67,44 L60,52 L70,55 L61,58 L64,68 L54,62 L44,68 L47,58 L38,55 L48,52 L41,44 L51,46 Z"/>
+</vector>

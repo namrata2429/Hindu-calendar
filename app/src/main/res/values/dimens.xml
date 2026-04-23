@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="calendar_cell_height">64dp</dimen>
+    <dimen name="event_dot_size">6dp</dimen>
+    <dimen name="card_corner_radius">12dp</dimen>
+    <dimen name="content_padding">16dp</dimen>
+    <dimen name="small_padding">8dp</dimen>
+</resources>

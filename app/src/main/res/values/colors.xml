@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary saffron/orange palette inspired by Hindu aesthetics -->
+    <color name="primary">#D4521C</color>
+    <color name="primary_dark">#A83C10</color>
+    <color name="primary_light">#F58D60</color>
+    <color name="accent">#F5C842</color>
+    <color name="accent_dark">#E0A800</color>
+
+    <!-- Background -->
+    <color name="background">#FFF8F0</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="surface_variant">#FFF0E4</color>
+
+    <!-- Text -->
+    <color name="text_primary">#1A1A1A</color>
+    <color name="text_secondary">#6B5A50</color>
+    <color name="text_hint">#9E9E9E</color>
+    <color name="white">#FFFFFF</color>
+
+    <!-- Event category colors -->
+    <color name="color_festival">#D4521C</color>
+    <color name="color_navratri">#E91E96</color>
+    <color name="color_ekadashi">#4CAF50</color>
+    <color name="color_purnima">#3F51B5</color>
+    <color name="color_amavasya">#212121</color>
+    <color name="color_vrat">#9C27B0</color>
+    <color name="color_sankranti">#FF9800</color>
+    <color name="color_special">#607D8B</color>
+
+    <!-- Calendar -->
+    <color name="calendar_header">#D4521C</color>
+    <color name="today_bg">#D4521C</color>
+    <color name="sunday_color">#C62828</color>
+    <color name="saturday_color">#1565C0</color>
+
+    <!-- Divider -->
+    <color name="divider">#E0D5CC</color>
+
+    <!-- Status bar -->
+    <color name="status_bar">#A83C10</color>
+</resources>
