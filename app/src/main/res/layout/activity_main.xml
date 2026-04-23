@@ -228,7 +228,7 @@
                             style="@style/EventFilterButton"
                             android:layout_marginEnd="8dp"
                             android:text="All"
-                            android:selected="true"/>
+                            />
 
                         <Button
                             android:id="@+id/btn_filter_festival"
