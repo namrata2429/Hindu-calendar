@@ -51,14 +51,21 @@ jobs:
       - name: Decode Keystore
         run: |
           echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > hindu_calendar.keystore
+          ls -lh hindu_calendar.keystore
+
+      - name: Verify Keystore
+        run: |
+          keytool -list \
+            -keystore hindu_calendar.keystore \
+            -storepass "${{ secrets.KEYSTORE_PASSWORD }}" 2>&1 | head -5
 
       - name: Build Release APK
         run: |
           ./gradlew assembleRelease \
             -Pandroid.injected.signing.store.file=$GITHUB_WORKSPACE/hindu_calendar.keystore \
-            -Pandroid.injected.signing.store.password=Hindu2026 \
+            -Pandroid.injected.signing.store.password="${{ secrets.KEYSTORE_PASSWORD }}" \
             -Pandroid.injected.signing.key.alias=hinduapp \
-            -Pandroid.injected.signing.key.password=Hindu2026
+            -Pandroid.injected.signing.key.password="${{ secrets.KEYSTORE_PASSWORD }}"
 
       - name: Upload Signed APK
         uses: actions/upload-artifact@v4
