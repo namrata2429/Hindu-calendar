@@ -140,7 +140,9 @@
       display: grid;
       grid-template-columns: repeat(7, 1fr);
       background: var(--saffron-pale);
-      border-bottom: 1px solid var(--border);
+      border-bottom: 2px solid var(--border);
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .day-header {
@@ -160,6 +162,8 @@
       grid-template-columns: repeat(7, 1fr);
       background: var(--surface);
       border-bottom: 3px solid var(--border);
+      width: 100%;
+      box-sizing: border-box;
     }
 
     /* Fixed equal-size calendar cells */
@@ -643,6 +647,7 @@
     .empty-state p { font-size: 14px; }
 
     @media (min-width: 600px) {
+      .day-headers { max-width: 600px; margin: 0 auto; }
       .calendar-grid { max-width: 600px; margin: 0 auto; }
       .events-section { max-width: 600px; margin: 0 auto; }
       header .header-top { max-width: 600px; margin: 0 auto; }
@@ -691,7 +696,6 @@
       </div>
       <button onclick="changeMonth(1)">›</button>
     </div>
-    <div class="day-headers" id="day-headers"></div>
   </header>
 
   <!-- Legend -->
@@ -706,6 +710,7 @@
   </div>
 
   <!-- Calendar -->
+  <div class="day-headers" id="day-headers"></div>
   <div class="calendar-grid" id="calendar-grid"></div>
 
   <!-- Events -->
