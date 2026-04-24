@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#B5451B"/>
+  <meta name="description" content="Hindu Panchang Calendar 2026 — Festivals, Vrats & Tithis in English, Hindi & Odia"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <meta name="apple-mobile-web-app-title" content="Panchang 2026"/>
+  <link rel="manifest" href="manifest.json"/>
+  <link rel="apple-touch-icon" href="icons/icon-192.svg"/>
+  <title>Hindu Panchang 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Sanskrit:ital@0;1&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --saffron:       #B5451B;
+      --saffron-light: #E8622A;
+      --saffron-pale:  #FDF0E8;
+      --gold:          #D4A017;
+      --gold-light:    #F5C842;
+      --deep:          #2C1A0E;
+      --cream:         #FFF8F0;
+      --surface:       #FFFFFF;
+      --muted:         #8C6A55;
+      --border:        #EAD9CC;
+
+      --festival:  #B5451B;
+      --navratri:  #C2185B;
+      --ekadashi:  #2E7D32;
+      --purnima:   #1565C0;
+      --amavasya:  #37474F;
+      --vrat:      #6A1B9A;
+      --sankranti: #E65100;
+      --special:   #00695C;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--deep);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: linear-gradient(135deg, #B5451B 0%, #8B2E0D 60%, #5C1A05 100%);
+      padding: 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px 8px;
+    }
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .om-symbol {
+      font-family: 'Tiro Devanagari Sanskrit', serif;
+      font-size: 32px;
+      color: var(--gold-light);
+      line-height: 1;
+      filter: drop-shadow(0 0 8px rgba(245,200,66,0.5));
+      animation: glow 3s ease-in-out infinite;
+    }
+
+    @keyframes glow {
+      0%, 100% { filter: drop-shadow(0 0 6px rgba(245,200,66,0.4)); }
+      50%       { filter: drop-shadow(0 0 14px rgba(245,200,66,0.8)); }
+    }
+
+    .header-titles h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .header-titles .subtitle {
+      font-size: 11px;
+      color: var(--gold-light);
+      letter-spacing: 0.5px;
+    }
+
+    .lang-btn {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 6px 14px;
+      color: #fff;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .lang-btn:hover { background: rgba(255,255,255,0.25); }
+
+    /* Month nav */
+    .month-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 16px;
+      background: rgba(0,0,0,0.15);
+    }
+
+    .month-nav button {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      border-radius: 50%;
+      width: 34px; height: 34px;
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .month-nav button:hover { background: rgba(255,255,255,0.35); }
+
+    .month-center { text-align: center; }
+    .month-name { font-family: 'DM Serif Display', serif; font-size: 20px; color: #fff; }
+    .hindu-month { font-size: 11px; color: var(--gold-light); margin-top: 2px; }
+
+    /* Day headers */
+    .day-headers {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      background: var(--saffron-pale);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .day-header {
+      text-align: center;
+      padding: 6px 2px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.5px;
+    }
+    .day-header:first-child { color: #C62828; }
+    .day-header:last-child  { color: #1565C0; }
+
+    /* ── CALENDAR GRID ── */
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      background: var(--surface);
+      border-bottom: 3px solid var(--border);
+    }
+
+    .cal-day {
+      min-height: 64px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 4px 3px 3px;
+      position: relative;
+      cursor: default;
+      transition: background 0.15s;
+    }
+
+    .cal-day:nth-child(7n) { border-right: none; }
+    .cal-day.empty { background: #FAF5F0; cursor: default; }
+    .cal-day.has-events { cursor: pointer; }
+    .cal-day.has-events:hover { background: var(--saffron-pale); }
+
+    .cal-day.today .day-num {
+      background: var(--saffron);
+      color: #fff;
+      border-radius: 50%;
+      width: 26px; height: 26px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700;
+    }
+
+    .cal-day.sunday .day-num  { color: #C62828; }
+    .cal-day.saturday .day-num { color: #1565C0; }
+    .cal-day.today .day-num   { color: #fff !important; }
+
+    .day-num {
+      font-size: 14px;
+      font-weight: 500;
+      width: 26px; height: 26px;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 2px;
+    }
+
+    .tithi-text {
+      font-size: 7px;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.2;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      padding: 0 2px;
+    }
+
+    .event-dots {
+      display: flex;
+      justify-content: center;
+      gap: 2px;
+      margin-top: 3px;
+      flex-wrap: wrap;
+    }
+
+    .event-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .major-star {
+      position: absolute;
+      top: 2px; right: 3px;
+      font-size: 8px;
+      color: var(--gold);
+    }
+
+    /* ── EVENTS SECTION ── */
+    .events-section {
+      padding: 16px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
+      color: var(--saffron);
+    }
+
+    /* Filter pills */
+    .filters {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding-bottom: 12px;
+      margin-bottom: 4px;
+    }
+    .filters::-webkit-scrollbar { display: none; }
+
+    .filter-pill {
+      flex-shrink: 0;
+      padding: 6px 16px;
+      border-radius: 20px;
+      border: 1.5px solid var(--border);
+      background: var(--surface);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .filter-pill.active {
+      background: var(--saffron);
+      border-color: var(--saffron);
+      color: #fff;
+    }
+
+    /* Event cards */
+    .event-card {
+      display: flex;
+      align-items: stretch;
+      background: var(--surface);
+      border-radius: 12px;
+      margin-bottom: 10px;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.07);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .event-card:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    }
+
+    .event-card-bar {
+      width: 5px;
+      flex-shrink: 0;
+    }
+
+    .event-card-body {
+      flex: 1;
+      padding: 12px;
+    }
+
+    .event-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 4px;
+    }
+
+    .event-card-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 15px;
+      color: var(--deep);
+      line-height: 1.3;
+      flex: 1;
+      padding-right: 8px;
+    }
+
+    .event-card-date {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--saffron);
+      white-space: nowrap;
+    }
+
+    .event-card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .event-card-tithi {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .event-card-tag {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 10px;
+      background: var(--saffron-pale);
+      color: var(--saffron);
+    }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 200;
+      display: flex;
+      align-items: flex-end;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal {
+      background: var(--surface);
+      border-radius: 20px 20px 0 0;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      transform: translateY(100%);
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+      padding-bottom: env(safe-area-inset-bottom, 20px);
+    }
+
+    .modal-overlay.open .modal {
+      transform: translateY(0);
+    }
+
+    .modal-handle {
+      width: 40px; height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      margin: 12px auto 0;
+    }
+
+    .modal-header {
+      background: linear-gradient(135deg, #B5451B, #8B2E0D);
+      padding: 16px 20px 20px;
+      margin: 8px 16px 0;
+      border-radius: 12px;
+    }
+
+    .modal-category-tag {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--gold-light);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .modal-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .modal-body { padding: 16px 20px; }
+
+    .modal-info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .modal-info-row:last-child { border-bottom: none; }
+
+    .modal-info-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+    .modal-info-label {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+
+    .modal-info-value {
+      font-size: 14px;
+      color: var(--deep);
+      line-height: 1.5;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px; right: 16px;
+      background: rgba(255,255,255,0.2);
+      border: none;
+      border-radius: 50%;
+      width: 32px; height: 32px;
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ── LANGUAGE SCREEN ── */
+    #lang-screen {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(160deg, #B5451B 0%, #5C1A05 100%);
+      z-index: 300;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+    }
+
+    #lang-screen.hidden { display: none; }
+
+    .lang-om {
+      font-family: 'Tiro Devanagari Sanskrit', serif;
+      font-size: 80px;
+      color: var(--gold-light);
+      animation: glow 3s ease-in-out infinite;
+      margin-bottom: 16px;
+    }
+
+    .lang-screen-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 26px;
+      color: #fff;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+
+    .lang-screen-sub {
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .lang-options { display: flex; flex-direction: column; gap: 14px; width: 100%; max-width: 300px; }
+
+    .lang-option {
+      background: rgba(255,255,255,0.12);
+      border: 1.5px solid rgba(255,255,255,0.3);
+      border-radius: 14px;
+      padding: 16px 24px;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 500;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .lang-option:hover {
+      background: rgba(255,255,255,0.25);
+      transform: scale(1.02);
+    }
+
+    .lang-option .flag { font-size: 22px; }
+
+    /* ── LEGEND ── */
+    .legend {
+      padding: 12px 16px;
+      background: var(--surface);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .legend-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--deep);
+      padding: 20px 16px;
+      text-align: center;
+    }
+
+    .footer-om {
+      font-family: 'Tiro Devanagari Sanskrit', serif;
+      font-size: 28px;
+      color: var(--gold-light);
+    }
+
+    .footer-text {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 6px;
+    }
+
+    /* Install banner */
+    #install-banner {
+      position: fixed;
+      bottom: 20px;
+      left: 16px; right: 16px;
+      background: var(--deep);
+      border-radius: 14px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+      z-index: 150;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    }
+
+    #install-banner.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .install-text { font-size: 13px; color: #fff; flex: 1; }
+    .install-text strong { color: var(--gold-light); }
+
+    .install-btn {
+      background: var(--saffron);
+      border: none;
+      border-radius: 8px;
+      padding: 8px 16px;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .install-dismiss {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.5);
+      font-size: 20px;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+    }
+    .empty-state .empty-icon { font-size: 40px; margin-bottom: 10px; }
+    .empty-state p { font-size: 14px; }
+
+    @media (min-width: 600px) {
+      .calendar-grid { max-width: 600px; margin: 0 auto; }
+      .events-section { max-width: 600px; margin: 0 auto; }
+      header .header-top { max-width: 600px; margin: 0 auto; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- LANGUAGE SELECTION SCREEN -->
+<div id="lang-screen">
+  <div class="lang-om">ॐ</div>
+  <h1 class="lang-screen-title">Hindu Panchang 2026</h1>
+  <p class="lang-screen-sub">Vikram Samvat 2083 • Select your language</p>
+  <div class="lang-options">
+    <button class="lang-option" onclick="setLang('en')">
+      <span class="flag">🇬🇧</span> English
+    </button>
+    <button class="lang-option" onclick="setLang('hi')">
+      <span class="flag">🇮🇳</span> हिन्दी
+    </button>
+    <button class="lang-option" onclick="setLang('or')">
+      <span class="flag">🏛</span> ଓଡ଼ିଆ
+    </button>
+  </div>
+</div>
+
+<!-- MAIN APP -->
+<div id="app" style="display:none">
+
+  <header>
+    <div class="header-top">
+      <div class="header-brand">
+        <span class="om-symbol">ॐ</span>
+        <div class="header-titles">
+          <h1 id="app-title">Hindu Panchang 2026</h1>
+          <div class="subtitle" id="app-subtitle">Vikram Samvat 2083</div>
+        </div>
+      </div>
+      <button class="lang-btn" onclick="showLangScreen()">🌐 Lang</button>
+    </div>
+    <div class="month-nav">
+      <button onclick="changeMonth(-1)">‹</button>
+      <div class="month-center">
+        <div class="month-name" id="month-name">January 2026</div>
+        <div class="hindu-month" id="hindu-month">Paush</div>
+      </div>
+      <button onclick="changeMonth(1)">›</button>
+    </div>
+    <div class="day-headers" id="day-headers"></div>
+  </header>
+
+  <!-- Legend -->
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--festival)"></div><span id="leg-festival">Festival</span></div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--ekadashi)"></div><span id="leg-ekadashi">Ekadashi</span></div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--purnima)"></div><span id="leg-purnima">Purnima</span></div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--vrat)"></div><span id="leg-vrat">Vrat</span></div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--sankranti)"></div><span id="leg-sankranti">Sankranti</span></div>
+  </div>
+
+  <!-- Calendar -->
+  <div class="calendar-grid" id="calendar-grid"></div>
+
+  <!-- Events -->
+  <div class="events-section">
+    <div class="section-header">
+      <h2 class="section-title" id="events-title">Upcoming Events</h2>
+    </div>
+    <div class="filters" id="filters"></div>
+    <div id="events-list"></div>
+  </div>
+
+  <footer>
+    <div class="footer-om">ॐ</div>
+    <div class="footer-text" id="footer-text">Hindu Panchang Calendar 2026 • All data compiled from traditional Hindu almanac sources</div>
+  </footer>
+</div>
+
+<!-- Event Detail Modal -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-handle"></div>
+    <div style="position:relative">
+      <div class="modal-header" id="modal-header">
+        <div class="modal-category-tag" id="modal-cat"></div>
+        <div class="modal-title" id="modal-title"></div>
+        <button class="modal-close" onclick="closeModalDirect()">×</button>
+      </div>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<!-- Install Banner -->
+<div id="install-banner">
+  <div class="install-text"><strong>Install App</strong><br>Add to home screen for offline use</div>
+  <button class="install-btn" id="install-btn">Install</button>
+  <button class="install-dismiss" onclick="dismissInstall()">×</button>
+</div>
+
+<script>
+// ══════════════════════════════════════════
+//  DATA
+// ══════════════════════════════════════════
+const MONTHS_EN = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const MONTHS_HI = ['जनवरी','फरवरी','मार्च','अप्रैल','मई','जून','जुलाई','अगस्त','सितंबर','अक्टूबर','नवंबर','दिसंबर'];
+const MONTHS_OR = ['ଜାନୁଆରୀ','ଫେବ୍ରୁଆରୀ','ମାର୍ଚ୍ଚ','ଏପ୍ରିଲ','ମଇ','ଜୁନ','ଜୁଲାଇ','ଅଗଷ୍ଟ','ସେପ୍ଟେମ୍ବର','ଅକ୍ଟୋବର','ନଭେମ୍ବର','ଡିସେମ୍ବର'];
+
+const HINDU_MONTHS_EN = ['Paush','Magha','Phalguna','Chaitra','Vaisakha','Jyeshtha','Ashadha','Shravana','Bhadrapada','Ashwin','Kartik','Margashirsha'];
+const HINDU_MONTHS_HI = ['पौष','माघ','फाल्गुन','चैत्र','वैशाख','ज्येष्ठ','आषाढ़','श्रावण','भाद्रपद','अश्विन','कार्तिक','मार्गशीर्ष'];
+const HINDU_MONTHS_OR = ['ପୌଷ','ମାଘ','ଫାଲ୍ଗୁନ','ଚୈତ୍ର','ବୈଶାଖ','ଜ୍ୟେଷ୍ଠ','ଆଷାଢ଼','ଶ୍ରାବଣ','ଭାଦ୍ରବ','ଆଶ୍ୱିନ','କାର୍ତ୍ତିକ','ମାର୍ଗଶିର'];
+
+const DAYS_EN = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const DAYS_HI = ['रवि','सोम','मंगल','बुध','गुरु','शुक्र','शनि'];
+const DAYS_OR = ['ରବି','ସୋମ','ମଙ୍ଗଳ','ବୁଧ','ଗୁରୁ','ଶୁକ୍ର','ଶନି'];
+
+const CAT_COLORS = {
+  festival:'var(--festival)', navratri:'var(--navratri)', ekadashi:'var(--ekadashi)',
+  purnima:'var(--purnima)', amavasya:'var(--amavasya)', vrat:'var(--vrat)',
+  sankranti:'var(--sankranti)', special:'var(--special)', chaturthi:'var(--vrat)'
+};
+
+// All 2026 Hindu events
+const EVENTS = [
+  // JANUARY
+  {id:'jan_06', date:'2026-01-06', d:6, m:1, cat:'purnima', major:false, vrat:true, ekadashi:false,
+   nameEn:'Paush Purnima', nameHi:'पौष पूर्णिमा', nameOr:'ପୌଷ ପୂର୍ଣ୍ଣiমা',
+   tithiEn:'Purnima • Shukla Paksha • Paush', tithiHi:'पूर्णिमा • शुक्ल पक्ष • पौष', tithiOr:'ପୂର୍ଣ୍ଣiমা • ଶୁକ୍ଳ ପକ୍ଷ • ପୌଷ',
+   descEn:'Paush Purnima — Sacred full moon of Paush month. Holy dip in Ganga is considered very auspicious on this day.',
+   descHi:'पौष पूर्णिमा — पवित्र पूर्णिमा। गंगा स्नान अत्यंत पुण्यदायी है।',
+   descOr:'ପୌଷ ପୂର୍ଣ୍ଣiমা — ପବିତ୍ର ପୂର୍ଣ୍ଣiমা। ଗଙ୍ଗାସ୍ନାନ ଅତ୍ୟନ୍ତ ଶୁଭ।',
+   time:'', deity:''},
+  {id:'jan_10', date:'2026-01-10', d:10, m:1, cat:'chaturthi', major:false, vrat:true, ekadashi:false,
+   nameEn:'Sankashti Chaturthi', nameHi:'संकष्टी चतुर्थी', nameOr:'ସଙ୍କଷ୍ଟୀ ଚତୁର୍ଥୀ',
+   tithiEn:'Chaturthi • Krishna Paksha • Magha', tithiHi:'चतुर्थी • कृष्ण पक्ष • माघ', tithiOr:'ଚତୁର୍ଥୀ • କୃଷ୍ଣ ପକ୍ଷ • ମାଘ',
+   descEn:'Monthly vrat dedicated to Lord Ganesha. Fasting observed until moonrise.',
+   descHi:'भगवान गणेश को समर्पित मासिक व्रत। चंद्रोदय तक उपवास।',
+   descOr:'ଭଗବାନ ଗଣେଶଙ୍କ ମାସିକ ବ୍ରତ। ଚନ୍ଦ୍ରୋଦୟ ପର୍ଯ୍ୟନ୍ତ ଉପବାସ।',
+   time:'Moonrise', deity:'Ganesha'},
+  {id:'jan_14', date:'2026-01-14', d:14, m:1, cat:'sankranti', major:true, vrat:false, ekadashi:false,
+   nameEn:'Makar Sankranti', nameHi:'मकर संक्रांति', nameOr:'ମକର ସଂକ୍ରାନ୍ତି',
+   tithiEn:'Saptami • Krishna Paksha • Magha', tithiHi:'सप्तमी • कृष्ण पक्ष • माघ', tithiOr:'ସପ୍ତମୀ • କୃଷ୍ଣ ପକ୍ଷ • ମାଘ',
+   descEn:'Makar Sankranti — Sun enters Capricorn. One of the most important solar festivals. Kite flying, sesame sweets, holy dips in rivers.',
+   descHi:'मकर संक्रांति — सूर्य मकर राशि में प्रवेश। तिल-गुड़ का दान पुण्यदायी। पतंगबाजी।',
+   descOr:'ମକର ସଂକ୍ରାନ୍ତି — ସୂର୍ଯ୍ୟ ମକର ରାଶିରେ ପ୍ରବେଶ। ଓଡ଼ିଶାରେ ଏହା ଏକ ବଡ଼ ପର୍ବ।',
+   time:'06:57 AM', deity:''},
+  {id:'jan_20', date:'2026-01-20', d:20, m:1, cat:'ekadashi', major:false, vrat:true, ekadashi:true,
+   nameEn:'Saphala Ekadashi', nameHi:'सफला एकादशी', nameOr:'ସଫଳ ଏକାଦଶୀ',
+   tithiEn:'Ekadashi • Krishna Paksha • Magha', tithiHi:'एकादशी • कृष्ण पक्ष • माघ', tithiOr:'ଏକାଦଶୀ • କୃଷ୍ଣ ପକ୍ଷ • ମାଘ',
+   descEn:'Saphala Ekadashi — Fasting on this day fulfills all wishes. Dedicated to Lord Vishnu.',
+   descHi:'सफला एकादशी — इस दिन उपवास करने से सभी मनोकामनाएं पूर्ण होती हैं।',
+   descOr:'ସଫଳ ଏକାଦଶୀ — ଏହି ବ୍ରତ ସମସ୍ତ ମନୋକାମନା ପୂର୍ଣ କରିଥାଏ।',
+   time:'Sunrise to Sunrise', deity:'Vishnu'},
+  {id:'jan_21', date:'2026-01-21', d:21, m:1, cat:'amavasya', major:false, vrat:true, ekadashi:false,
+   nameEn:'Mauni Amavasya', nameHi:'मौनी अमावस्या', nameOr:'ମୌନୀ ଅମାବାସ୍ୟା',
+   tithiEn:'Amavasya • Krishna Paksha • Magha', tithiHi:'अमावस्या • कृष्ण पक्ष • माघ', tithiOr:'ଅମାବାସ୍ୟା • କୃଷ୍ଣ ପକ୍ଷ • ମାଘ',
+   descEn:'Mauni Amavasya — Most auspicious Amavasya during Magh Mela. Silence (mauna) observed all day. Holy dip in Ganga.',
+   descHi:'मौनी अमावस्या — माघ मेले की सबसे पवित्र अमावस्या। मौन व्रत और गंगा स्नान।',
+   descOr:'ମୌନୀ ଅମାବାସ୍ୟା — ମୌନ ପାଳନ ଓ ଗଙ୍ଗାସ୍ନାନ ଅତ୍ୟନ୍ତ ଶୁଭ।',
+   time:'', deity:''},
+  // FEBRUARY
+  {id:'feb_04', date:'2026-02-04', d:4, m:2, cat:'purnima', major:false, vrat:true, ekadashi:false,
+   nameEn:'Magha Purnima', nameHi:'माघ पूर्णिमा', nameOr:'ମାଘ ପୂର୍ଣ୍ଣiমা',
+   tithiEn:'Purnima • Shukla Paksha • Magha', tithiHi:'पूर्णिमा • शुक्ल पक्ष • माघ', tithiOr:'ପୂର୍ଣ୍ଣiমা • ଶୁକ୍ଳ ପକ୍ଷ • ମାଘ',
+   descEn:'Magha Purnima — Sacred full moon of Magha. Bathing in holy rivers is considered very auspicious.',
+   descHi:'माघ पूर्णिमा — पवित्र नदियों में स्नान अत्यंत पुण्यदायी।',
+   descOr:'ମାଘ ପୂର୍ଣ୍ଣiমا — ନଦୀସ୍ନାନ ଅତ୍ୟନ୍ତ ଶୁଭ।',
+   time:'', deity:''},
+  {id:'feb_19', date:'2026-02-19', d:19, m:2, cat:'festival', major:true, vrat:true, ekadashi:false,
+   nameEn:'Maha Shivaratri', nameHi:'महा शिवरात्रि', nameOr:'ମହା ଶିବରାତ୍ରି',
+   tithiEn:'Trayodashi • Krishna Paksha • Phalguna', tithiHi:'त्रयोदशी • कृष्ण पक्ष • फाल्गुन', tithiOr:'ତ୍ରୟୋଦଶୀ • କୃଷ୍ଣ ପକ୍ଷ • ଫାଲ୍ଗୁନ',
+   descEn:'Maha Shivaratri — The Great Night of Lord Shiva! Night-long worship, Abhishekam with milk/water/honey, Jaagaran. One of the greatest Hindu festivals.',
+   descHi:'महा शिवरात्रि — भगवान शिव की महान रात्रि। रात्रि पूजन, जागरण, अभिषेक। महान हिंदू पर्व।',
+   descOr:'ମହା ଶିବରାତ୍ରି — ଭଗବାନ ଶିବଙ୍କ ମହାନ ରାତ୍ରି। ସାରା ରାତ ଶିବ ପୂଜା ଓ ଜାଗରଣ।',
+   time:'Nishita Kaal: 12:08 AM – 1:00 AM', deity:'Shiva'},
+  // MARCH
+  {id:'mar_03', date:'2026-03-03', d:3, m:3, cat:'festival', major:true, vrat:false, ekadashi:false,
+   nameEn:'Holika Dahan (Holi Eve)', nameHi:'होलिका दहन', nameOr:'ହୋଲିକା ଦହନ',
+   tithiEn:'Purnima • Shukla Paksha • Phalguna', tithiHi:'पूर्णिमा • शुक्ल पक्ष • फाल्गुन', tithiOr:'ପୂର୍ଣ୍ଣiমா • ଶୁକ୍ଳ ପକ୍ଷ • ଫାଲ୍ଗୁନ',
+   descEn:'Holika Dahan — Bonfire lit on Phalguna Purnima to celebrate victory of good over evil. Holika effigy burned.',
+   descHi:'होलिका दहन — फाल्गुन पूर्णिमा की रात होलिका दहन। बुराई पर अच्छाई की जीत।',
+   descOr:'ହୋଲିକା ଦହନ — ମନ୍ଦ ଉପରେ ସଦ୍ ବିଜୟ ଉତ୍ସବ।',
+   time:'Evening', deity:''},
+  {id:'mar_04', date:'2026-03-04', d:4, m:3, cat:'festival', major:true, vrat:false, ekadashi:false,
+   nameEn:'Holi — Festival of Colors', nameHi:'होली — रंगों का त्योहार', nameOr:'ହୋଲି — ରଙ୍ଗ ଉତ୍ସବ',
+   tithiEn:'Pratipada • Krishna Paksha • Chaitra', tithiHi:'प्रतिपदा • कृष्ण पक्ष • चैत्र', tithiOr:'ପ୍ରତିପଦା • କୃଷ୍ଣ ପକ୍ଷ • ଚୈତ୍ର',
+   descEn:'Holi — Festival of Colors! Play with colors, celebrate spring and love. Dhulandi — colors and joy all day.',
+   descHi:'होली — रंगों का त्योहार! रंग खेलें, वसंत का स्वागत करें। खुशियाँ मनाएं।',
+   descOr:'ହୋଲି — ରଙ୍ଗ ଉତ୍ସବ! ଏହି ଦିନ ରଙ୍ଗ ଖେଳ ଓ ଆନନ୍ଦ।',
+   time:'Morning', deity:''},
+  {id:'mar_19', date:'2026-03-19', d:19, m:3, cat:'festival', major:true, vrat:false, ekadashi:false,
+   nameEn:'Hindu New Year / Ugadi / Gudi Padwa', nameHi:'हिंदू नव वर्ष / उगादि / गुड़ी पड़वा', nameOr:'ହିନ୍ଦୁ ନବ ବର୍ଷ / ଉଗାଦି',
+   tithiEn:'Pratipada • Shukla Paksha • Chaitra', tithiHi:'प्रतिपदा • शुक्ल पक्ष • चैत्र', tithiOr:'ପ୍ରତିପଦା • ଶୁକ୍ଳ ପକ୍ଷ • ଚୈତ୍ର',
+   descEn:'Hindu New Year — Vikram Samvat 2083 begins. Chaitra Navratri starts. Ugadi in Karnataka/Andhra, Gudi Padwa in Maharashtra.',
+   descHi:'हिंदू नव वर्ष — विक्रम संवत 2083 आरंभ। चैत्र नवरात्रि प्रारंभ।',
+   descOr:'ହିନ୍ଦୁ ନବ ବର୍ଷ — ବିକ୍ରମ ସମ୍ବତ ୨୦୮୩ ଆରମ୍ଭ। ଚୈତ୍ର ନବରାତ୍ରି ଆରମ୍ଭ।',
+   time:'', deity:''},
+  {id:'mar_28', date:'2026-03-28', d:28, m:3, cat:'festival', major:true, vrat:true, ekadashi:false,
+   nameEn:'Ram Navami', nameHi:'रामनवमी', nameOr:'ରାମ ନବମୀ',
+   tithiEn:'Navami • Shukla Paksha • Chaitra', tithiHi:'नवमी • शुक्ल पक्ष • चैत्र', tithiOr:'ନବମୀ • ଶୁକ୍ଳ ପକ୍ଷ • ଚୈତ୍ର',
+   descEn:'Ram Navami — Birthday of Lord Rama, 7th avatar of Vishnu. Prayers, fasting, recitation of Ramayana.',
+   descHi:'रामनवमी — भगवान श्रीराम का जन्मदिन। रामायण पाठ और व्रत।',
+   descOr:'ରାମ ନବମୀ — ଭଗବାନ ଶ୍ରୀରାମଙ୍କ ଜନ୍ମ ଦିବସ। ରାମାୟଣ ପାଠ।',
+   time:'Madhyahna (Midday)', deity:'Rama'},
+  // APRIL
+  {id:'apr_02', date:'2026-04-02', d:2, m:4, cat:'festival', major:true, vrat:false, ekadashi:false,
+   nameEn:'Hanuman Jayanti', nameHi:'हनुमान जयंती', nameOr:'ହନୁମାନ ଜୟନ୍ତୀ',
+   tithiEn:'Purnima • Shukla Paksha • Chaitra', tithiHi:'पूर्णिमा • शुक्ल पक्ष • चैत्र', tithiOr:'ପୂର୍ଣ୍ଣiমা • ଶୁକ୍ଳ ପକ୍ଷ • ଚୈତ୍ର',
+   descEn:'Hanuman Jayanti — Birthday of Lord Hanuman. Recite Hanuman Chalisa and Sunderkand. Visit Hanuman temples.',
+   descHi:'हनुमान जयंती — भगवान हनुमान का जन्मदिन। हनुमान चालीसा पाठ।',
+   descOr:'ହନୁମାନ ଜୟନ୍ତୀ — ଭଗବାନ ହନୁମାନଙ୍କ ଜନ୍ମ ଦିବସ।',
+   time:'', deity:'Hanuman'},
+  {id:'apr_17', date:'2026-04-17', d:17, m:4, cat:'festival', major:true, vrat:false, ekadashi:false,
+   nameEn:'Akshaya Tritiya', nameHi:'अक्षय तृतीया', nameOr:'ଅକ୍ଷୟ ତୃତୀୟା',
+   tithiEn:'Tritiya • Shukla Paksha • Vaisakha', tithiHi:'तृतीया • शुक्ल पक्ष • वैशाख', tithiOr:'ତୃତୀୟା • ଶୁକ୍ଳ ପକ୍ଷ • ବୈଶାଖ',
+   descEn:'Akshaya Tritiya — One of the four most auspicious days of the Hindu year (Abhujh Muhurta). Buying gold is considered very auspicious.',
+   descHi:'अक्षय तृतीया — वर्ष के चार सर्वाधिक पवित्र दिनों में से एक। सोना खरीदना शुभ।',
+   descOr:'ଅକ୍ଷୟ ତୃତୀୟା — ବର୍ଷର ଚାରି ଅତ୍ୟନ୍ତ ଶୁଭ ଦିନ ମଧ୍ୟରୁ ଗୋଟିଏ।',
+   time:'Full day auspicious', deity:''},
+  // MAY
+  {id:'may_01', date:'2026-05-01', d:1, m:5, cat:'purnima', major:true, vrat:false, ekadashi:false,
+   nameEn:'Buddha Purnima', nameHi:'बुद्ध पूर्णिमा', nameOr:'ବୁଦ୍ଧ ପୂର୍ଣ୍ଣiமா',
+   tithiEn:'Purnima • Shukla Paksha • Vaisakha', tithiHi:'पूर्णिमा • शुक्ल पक्ष • वैशाख', tithiOr:'ପୂର୍ଣ୍ଣiমা • ଶୁକ୍ଳ ପକ୍ଷ • ବୈଶାଖ',
+   descEn:'Buddha Purnima — Birthday of Gautam Buddha. Also Vaisakha Purnima — sacred full moon.',
+   descHi:'बुद्ध पूर्णिमा — भगवान गौतम बुद्ध का जन्मदिन। वैशाख पूर्णिमा।',
+   descOr:'ବୁଦ୍ଧ ପୂର୍ଣ୍ଣiমa — ଗୌତମ ବୁଦ୍ଧଙ୍କ ଜନ୍ମ ଦିବସ।',
+   time:'', deity:''},
+  {id:'jun_22', date:'2026-06-22', d:22, m:6, cat:'ekadashi', major:true, vrat:true, ekadashi:true,
+   nameEn:'Nirjala Ekadashi', nameHi:'निर्जला एकादशी', nameOr:'ନିର୍ଜଳା ଏକାଦଶୀ',
+   tithiEn:'Ekadashi • Krishna Paksha • Jyeshtha', tithiHi:'एकादशी • कृष्ण पक्ष • ज्येष्ठ', tithiOr:'ଏକାଦଶୀ • କୃଷ୍ଣ ପକ୍ଷ • ଜ୍ୟେଷ୍ଠ',
+   descEn:'Nirjala Ekadashi — Most difficult Ekadashi. No water consumed during the fast. Equivalent in merit to all 24 Ekadashis combined!',
+   descHi:'निर्जला एकादशी — सबसे कठिन एकादशी। बिना पानी के उपवास। 24 एकादशियों के बराबर पुण्य।',
+   descOr:'ନିର୍ଜଳା ଏକାଦଶୀ — ସବୁଠୁ କଠିନ ଏକାଦଶୀ। ଜଳ ବିନା ଉପବାସ।',
+   time:'Sunrise to Sunrise', deity:'Vishnu'},
+  // JULY
+  {id:'jul_07', date:'2026-07-07', d:7, m:7, cat:'festival', major:true, vrat:false, ekadashi:false,
+   nameEn:'Rath Yatra — Jagannath Puri', nameHi:'रथ यात्रा — जगन्नाथ पुरी', nameOr:'ରଥ ଯାତ୍ରା — ଜଗନ୍ନାଥ ପୁରୀ',
+   tithiEn:'Dwadashi • Shukla Paksha • Ashadha', tithiHi:'द्वादशी • शुक्ल पक्ष • आषाढ़', tithiOr:'ଦ୍ୱାଦଶୀ • ଶୁକ୍ଳ ପକ୍ଷ • ଆଷାଢ଼',
+   descEn:'Rath Yatra — The grand chariot festival of Lord Jagannath, Balabhadra and Subhadra at Puri, Odisha. Millions participate in this world-famous festival.',
+   descHi:'रथ यात्रा — जगन्नाथ पुरी की विश्व प्रसिद्ध रथयात्रा। लाखों श्रद्धालु भाग लेते हैं।',
+   descOr:'ରଥ ଯାତ୍ରା — ଜଗନ୍ନାଥ ପୁରୀର ଜଗ ବିଖ୍ୟାତ ରଥ ଯାତ୍ରା। ଲକ୍ଷ ଲକ୍ଷ ଭକ୍ତ ଅଂଶ ନିଅନ୍ତି।',
+   time:'Morning Procession', deity:'Jagannath'},
+  {id:'jul_21', date:'2026-07-21', d:21, m:7, cat:'purnima', major:true, vrat:false, ekadashi:false,
+   nameEn:'Guru Purnima', nameHi:'गुरु पूर्णिमा', nameOr:'ଗୁରୁ ପୂର୍ଣ୍ଣiমা',
+   tithiEn:'Purnima • Shukla Paksha • Ashadha', tithiHi:'पूर्णिमा • शुक्ल पक्ष • आषाढ़', tithiOr:'ପୂର୍ଣ୍ଣiমা • ଶୁକ୍ଳ ପକ୍ଷ • ଆଷାଢ଼',
+   descEn:'Guru Purnima — Day to honor teachers and gurus. Dedicated to sage Vyasa. Vyasa Puja performed.',
+   descHi:'गुरु पूर्णिमा — गुरु को सम्मान देने का दिन। वेदव्यास जी की जयंती।',
+   descOr:'ଗୁରୁ ପୂର୍ଣ୍ଣiমa — ଗୁରୁ ଓ ଶିକ୍ଷକଙ୍କ ସ୍ମରଣ ଦିବସ।',
+   time:'', deity:''},
+  // AUGUST
+  {id:'aug_15', date:'2026-08-15', d:15, m:8, cat:'festival', major:true, vrat:false, ekadashi:false,
+   nameEn:'Raksha Bandhan', nameHi:'रक्षाबंधन', nameOr:'ରକ୍ଷାବନ୍ଧନ',
+   tithiEn:'Purnima • Shukla Paksha • Shravana', tithiHi:'पूर्णिमा • शुक्ल पक्ष • श्रावण', tithiOr:'ପୂର୍ଣ୍ଣiমা • ଶୁକ୍ଳ ପକ୍ଷ • ଶ୍ରାବଣ',
+   descEn:'Raksha Bandhan — Sisters tie rakhi on brothers\' wrists as a symbol of love and protection. Also India\'s Independence Day.',
+   descHi:'रक्षाबंधन — बहनें भाइयों को राखी बांधती हैं। भारत का स्वतंत्रता दिवस भी।',
+   descOr:'ରକ୍ଷାବନ୍ଧନ — ଭଉଣୀ ଭାଇ ହାତରେ ରାଖୀ ବାନ୍ଧନ୍ତି। ଭାରତ ସ୍ୱାଧୀନତା ଦିବସ।',
+   time:'', deity:''},
+  {id:'aug_20', date:'2026-08-20', d:20, m:8, cat:'festival', major:true, vrat:false, ekadashi:false,
+   nameEn:'Ganesh Chaturthi', nameHi:'गणेश चतुर्थी', nameOr:'ଗଣେଶ ଚତୁର୍ଥୀ',
+   tithiEn:'Chaturthi • Shukla Paksha • Bhadrapada', tithiHi:'चतुर्थी • शुक्ल पक्ष • भाद्रपद', tithiOr:'ଚତୁର୍ଥୀ • ଶୁକ୍ଳ ପକ୍ଷ • ଭାଦ୍ରବ',
+   descEn:'Ganesh Chaturthi — Birthday of Lord Ganesha! 10-day festival begins. Ganesh idol installed, worshipped with devotion, then immersed on Ananta Chaturdashi.',
+   descHi:'गणेश चतुर्थी — भगवान गणेश का जन्मदिन! 10 दिन का महोत्सव। गणेश प्रतिमा स्थापना।',
+   descOr:'ଗଣେଶ ଚତୁର୍ଥୀ — ଭଗବାନ ଗଣେଶଙ୍କ ଜନ୍ମ ଦିବସ! ୧୦ ଦିନ ଉତ୍ସବ।',
+   time:'Madhyahna Puja time', deity:'Ganesha'},
+  {id:'aug_28', date:'2026-08-28', d:28, m:8, cat:'festival', major:true, vrat:true, ekadashi:false,
+   nameEn:'Janmashtami', nameHi:'जन्माष्टमी', nameOr:'ଜନ୍ମାଷ୍ଟମୀ',
+   tithiEn:'Ashtami • Krishna Paksha • Bhadrapada', tithiHi:'अष्टमी • कृष्ण पक्ष • भाद्रपद', tithiOr:'ଅଷ୍ଟମୀ • କୃଷ୍ଣ ପକ୍ଷ • ଭାଦ୍ରବ',
+   descEn:'Janmashtami — Birthday of Lord Krishna! Midnight celebration, Dahi Handi, fasting until midnight. One of the greatest Hindu festivals.',
+   descHi:'जन्माष्टमी — भगवान श्रीकृष्ण का जन्मदिन! रात 12 बजे उत्सव, दही हांडी, व्रत।',
+   descOr:'ଜନ୍ମାଷ୍ଟମୀ — ଭଗବାନ ଶ୍ରୀକୃଷ୍ଣଙ୍କ ଜନ୍ମ ଦିବସ! ମଧ୍ୟ ରାତ୍ରି ଉତ୍ସବ।',
+   time:'Midnight 12:00 AM', deity:'Krishna'},
+  // SEPTEMBER
+  {id:'sep_23', date:'2026-09-23', d:23, m:9, cat:'navratri', major:true, vrat:true, ekadashi:false,
+   nameEn:'Shardiya Navratri Begins', nameHi:'शारदीय नवरात्रि प्रारंभ', nameOr:'ଶାରଦୀୟ ନବରାତ୍ରି ଆରମ୍ଭ',
+   tithiEn:'Pratipada • Shukla Paksha • Ashwin', tithiHi:'प्रतिपदा • शुक्ल पक्ष • अश्विन', tithiOr:'ପ୍ରତିପଦା • ଶୁକ୍ଳ ପକ୍ଷ • ଆଶ୍ୱିନ',
+   descEn:'Shardiya Navratri — Nine nights of Maa Durga worship. Most celebrated Navratri. Begins with Ghatasthapana. Fasting, garba, dandiya.',
+   descHi:'शारदीय नवरात्रि — माँ दुर्गा की नौ रातों की पूजा। घटस्थापना, गरबा, डांडिया।',
+   descOr:'ଶାରଦୀୟ ନବରାତ୍ରି — ଦୁର୍ଗା ପୂଜା। ଘଟ ସ୍ଥାପନା।',
+   time:'Ghatasthapana in morning', deity:'Durga'},
+  {id:'sep_28', date:'2026-09-28', d:28, m:9, cat:'navratri', major:true, vrat:false, ekadashi:false,
+   nameEn:'Maha Ashtami — Durga Puja', nameHi:'महा अष्टमी — दुर्गा पूजा', nameOr:'ମହା ଅଷ୍ଟମୀ — ଦୁର୍ଗା ପୂଜା',
+   tithiEn:'Ashtami • Shukla Paksha • Ashwin', tithiHi:'अष्टमी • शुक्ल पक्ष • अश्विन', tithiOr:'ଅଷ୍ଟମୀ • ଶୁକ୍ଳ ପକ୍ଷ • ଆଶ୍ୱିନ',
+   descEn:'Maha Ashtami — Most important day of Durga Puja. Sandhi Puja at junction of Ashtami and Navami. Kanya Puja.',
+   descHi:'महा अष्टमी — दुर्गा पूजा का सबसे महत्वपूर्ण दिन। संधि पूजा। कन्या पूजन।',
+   descOr:'ମହା ଅଷ୍ଟମୀ — ଦୁର୍ଗା ପୂଜାର ସବୁଠୁ ଗୁରୁତ୍ୱପୂର୍ଣ ଦିନ।',
+   time:'Sandhi Puja time', deity:'Durga'},
+  // OCTOBER
+  {id:'oct_01', date:'2026-10-01', d:1, m:10, cat:'festival', major:true, vrat:false, ekadashi:false,
+   nameEn:'Dussehra / Vijayadashami', nameHi:'दशहरा / विजयदशमी', nameOr:'ଦଶେରା / ବିଜୟ ଦଶମୀ',
+   tithiEn:'Dashami • Shukla Paksha • Ashwin', tithiHi:'दशमी • शुक्ल पक्ष • अश्विन', tithiOr:'ଦଶମୀ • ଶୁକ୍ଳ ପକ୍ଷ • ଆଶ୍ୱିନ',
+   descEn:'Vijayadashami — Victory of Rama over Ravana and Durga over Mahishasura. Ravana effigy burning. Symbol of triumph of good over evil.',
+   descHi:'विजयदशमी / दशहरा — राम की रावण पर विजय। रावण दहन। बुराई पर अच्छाई की जीत।',
+   descOr:'ବିଜୟ ଦଶମୀ — ରାବଣ ଦହନ। ଶ୍ରୀ ରାମଙ୍କ ବିଜୟ ଉତ୍ସବ।',
+   time:'Evening — Ravan Dahan', deity:''},
+  {id:'oct_11', date:'2026-10-11', d:11, m:10, cat:'purnima', major:true, vrat:false, ekadashi:false,
+   nameEn:'Sharad Purnima / Kojagari', nameHi:'शरद पूर्णिमा / कोजागरी', nameOr:'ଶରତ ପୂର୍ଣ୍ଣiমā',
+   tithiEn:'Purnima • Shukla Paksha • Ashwin', tithiHi:'पूर्णिमा • शुक्ल पक्ष • अश्विन', tithiOr:'ପୂର୍ଣ୍ଣiমā • ଶୁକ୍ଳ ପକ୍ଷ • ଆଶ୍ୱିନ',
+   descEn:'Sharad Purnima — Brightest full moon of the year. Kheer kept under moonlight to absorb healing nectar. Lakshmi Puja at night.',
+   descHi:'शरद पूर्णिमा — वर्ष की सबसे उज्जवल पूर्णिमा। खीर को चंद्रमा की रोशनी में रखा जाता है।',
+   descOr:'ଶରତ ପୂର୍ଣ୍ଣiমā — ବର୍ଷର ସବୁଠୁ ଉଜ୍ଜ୍ୱଳ ପୂର୍ଣ୍ଣiমা।',
+   time:'Moonrise', deity:'Lakshmi'},
+  {id:'oct_21', date:'2026-10-21', d:21, m:10, cat:'festival', major:true, vrat:true, ekadashi:false,
+   nameEn:'Diwali — Lakshmi Puja', nameHi:'दीवाली — लक्ष्मी पूजा', nameOr:'ଦୀପାବଳି — ଲକ୍ଷ୍ମୀ ପୂଜା',
+   tithiEn:'Amavasya • Krishna Paksha • Kartik', tithiHi:'अमावस्या • कृष्ण पक्ष • कार्तिक', tithiOr:'ଅମାବାସ୍ୟା • କୃଷ୍ଣ ପକ୍ଷ • କାର୍ତ୍ତିକ',
+   descEn:'Diwali — Festival of Lights! Lakshmi Puja performed at night. Fireworks, diyas, sweets. The greatest Hindu festival of the year.',
+   descHi:'दीवाली — रोशनी का त्योहार! रात्रि में लक्ष्मी पूजा। पटाखे, दीये, मिठाइयाँ।',
+   descOr:'ଦୀପାବଳି — ଆଲୋକ ଉତ୍ସବ! ଲକ୍ଷ୍ମୀ ପୂଜା। ଦୀପ ଜ୍ୱାଳନ।',
+   time:'Pradosh Kaal (Evening)', deity:'Lakshmi'},
+  {id:'oct_22', date:'2026-10-22', d:22, m:10, cat:'festival', major:true, vrat:false, ekadashi:false,
+   nameEn:'Govardhan Puja / Annakut', nameHi:'गोवर्धन पूजा / अन्नकूट', nameOr:'ଗୋବର୍ଧନ ପୂଜା',
+   tithiEn:'Pratipada • Shukla Paksha • Kartik', tithiHi:'प्रतिपदा • शुक्ल पक्ष • कार्तिक', tithiOr:'ପ୍ରତିପଦା • ଶୁକ୍ଳ ପକ୍ଷ • କାର୍ତ୍ତିକ',
+   descEn:'Govardhan Puja — Worship of Govardhan hill. Annakut — variety of food offerings to Krishna.',
+   descHi:'गोवर्धन पूजा — गोवर्धन पर्वत की पूजा। अन्नकूट उत्सव।',
+   descOr:'ଗୋବର୍ଧନ ପୂଜା — ଗୋବର୍ଧନ ପର୍ବତ ପୂଜା। ଅନ୍ନକୂଟ ଉତ୍ସବ।',
+   time:'', deity:'Krishna'},
+  {id:'oct_23', date:'2026-10-23', d:23, m:10, cat:'festival', major:true, vrat:false, ekadashi:false,
+   nameEn:'Bhai Dooj / Bhai Phota', nameHi:'भाई दूज / भाई फोटा', nameOr:'ଭାଇ ଦୂଜ',
+   tithiEn:'Dwitiya • Shukla Paksha • Kartik', tithiHi:'द्वितीया • शुक्ल पक्ष • कार्तिक', tithiOr:'ଦ୍ୱିତୀୟା • ଶୁକ୍ଳ ପକ୍ଷ • କାର୍ତ୍ତିକ',
+   descEn:'Bhai Dooj — Sisters apply tilak on brothers\' foreheads and pray for their long life. Celebration of sibling bond.',
+   descHi:'भाई दूज — बहनें भाइयों को तिलक लगाकर उनकी लंबी आयु की कामना करती हैं।',
+   descOr:'ଭାଇ ଦୂଜ — ଭଉଣୀ ଭାଇ କପାଳରେ ତିଳକ ଲଗାଏ।',
+   time:'', deity:''},
+  // NOVEMBER
+  {id:'nov_01', date:'2026-11-01', d:1, m:11, cat:'purnima', major:true, vrat:false, ekadashi:false,
+   nameEn:'Kartik Purnima / Dev Diwali', nameHi:'कार्तिक पूर्णिमा / देव दीवाली', nameOr:'କାର୍ତ୍ତିକ ପୂର୍ଣ୍ଣiমā / ଦେବ ଦୀପାବଳି',
+   tithiEn:'Purnima • Shukla Paksha • Kartik', tithiHi:'पूर्णिमा • शुक्ल पक्ष • कार्तिक', tithiOr:'ପୂର୍ଣ୍ଣiমā • ଶୁକ୍ଳ ପକ୍ଷ • କାର୍ତ୍ତिक',
+   descEn:'Kartik Purnima — Dev Diwali. Lamps lit on river ghats. Holy dip in Ganga. Most sacred Purnima of the year.',
+   descHi:'कार्तिक पूर्णिमा — देव दीवाली। घाटों पर दीप जलाए जाते हैं। गंगा स्नान।',
+   descOr:'କାର୍ତ୍ତिक ପୂର୍ଣ୍ଣiমā — ଦେବ ଦୀପାବଳି। ଘାଟ ଉପରେ ଦୀପ ଜ୍ୱାଳନ।',
+   time:'Pradosh time', deity:''},
+  {id:'nov_01b', date:'2026-11-01', d:1, m:11, cat:'festival', major:true, vrat:false, ekadashi:false,
+   nameEn:'Guru Nanak Jayanti', nameHi:'गुरु नानक जयंती', nameOr:'ଗୁରୁ ନାନକ ଜୟନ୍ତୀ',
+   tithiEn:'Purnima • Shukla Paksha • Kartik', tithiHi:'पूर्णिमा • शुक्ल पक्ष • कार्तिक', tithiOr:'ପୂର୍ଣ୍ଣiমā • ଶୁକ୍ଳ ପକ୍ଷ • କାର୍ତ୍ତiक',
+   descEn:'Guru Nanak Jayanti — Birthday of Guru Nanak Dev Ji, founder of Sikhism. Celebrated with prayer, kirtan, and seva.',
+   descHi:'गुरु नानक जयंती — सिख धर्म के संस्थापक गुरु नानक देव जी का जन्मदिन।',
+   descOr:'ଗୁରୁ ନାନକ ଜୟନ୍ତୀ — ଶିଖ ଧର୍ମ ପ୍ରତିଷ୍ଠାତା ଗୁରୁ ନାନକ ଦେବ ଜୀଙ୍କ ଜନ୍ମ ଦିବସ।',
+   time:'', deity:''},
+  // DECEMBER
+  {id:'dec_06', date:'2026-12-06', d:6, m:12, cat:'festival', major:false, vrat:false, ekadashi:false,
+   nameEn:'Geeta Jayanti', nameHi:'गीता जयंती', nameOr:'ଗୀତା ଜୟନ୍ତୀ',
+   tithiEn:'Ashtami • Krishna Paksha • Margashirsha', tithiHi:'अष्टमी • कृष्ण पक्ष • मार्गशीर्ष', tithiOr:'ଅଷ୍ଟମୀ • କୃଷ୍ଣ ପକ୍ଷ • ମାର୍ଗଶିର',
+   descEn:'Geeta Jayanti — Bhagavad Gita was recited by Lord Krishna on this day at Kurukshetra. Gita Saptah begins.',
+   descHi:'गीता जयंती — भगवान श्रीकृष्ण ने इस दिन गीता का उपदेश दिया था।',
+   descOr:'ଗୀତା ଜୟନ୍ତୀ — ଭଗବାନ ଶ୍ରୀକୃଷ୍ଣ ଏହି ଦିନ ଗୀତା ଉପଦେଶ ଦେଇଥିଲେ।',
+   time:'', deity:'Krishna'},
+];
+
+// ══════════════════════════════════════════
+//  STATE
+// ══════════════════════════════════════════
+let lang = 'en';
+let currentMonth = new Date().getMonth() + 1;
+let currentYear = 2026;
+let activeFilter = 'all';
+let deferredPrompt = null;
+
+const I18N = {
+  en: { appTitle:'Hindu Panchang 2026', samvat:'Vikram Samvat 2083',
+        eventsTitle:'Upcoming Events', all:'All', festivals:'Festivals',
+        vrat:'Vrat', ekadashi:'Ekadashi', purnima:'Purnima',
+        legFestival:'Festival', legEkadashi:'Ekadashi', legPurnima:'Purnima',
+        legVrat:'Vrat', legSankranti:'Sankranti',
+        footer:'Hindu Panchang Calendar 2026 • All data compiled from traditional Hindu almanac sources',
+        date:'Date', tithi:'Tithi', deity:'Deity', time:'Auspicious Time', desc:'About',
+        noEvents:'No events for this filter', catLabels:{
+          festival:'Major Festival', navratri:'Navratri', ekadashi:'Ekadashi',
+          purnima:'Purnima', amavasya:'Amavasya', vrat:'Vrat / Upavas',
+          sankranti:'Sankranti', special:'Special Day', chaturthi:'Chaturthi'
+        }},
+  hi: { appTitle:'हिंदू पंचांग 2026', samvat:'विक्रम संवत 2083',
+        eventsTitle:'आगामी त्योहार', all:'सभी', festivals:'त्योहार',
+        vrat:'व्रत', ekadashi:'एकादशी', purnima:'पूर्णिमा',
+        legFestival:'त्योहार', legEkadashi:'एकादशी', legPurnima:'पूर्णिमा',
+        legVrat:'व्रत', legSankranti:'संक्रांति',
+        footer:'हिंदू पंचांग कैलेंडर 2026 • पारंपरिक हिंदू पंचांग स्रोतों से संकलित',
+        date:'दिनांक', tithi:'तिथि', deity:'देवता', time:'शुभ मुहूर्त', desc:'विवरण',
+        noEvents:'इस फ़िल्टर के लिए कोई त्योहार नहीं', catLabels:{
+          festival:'प्रमुख त्योहार', navratri:'नवरात्रि', ekadashi:'एकादशी',
+          purnima:'पूर्णिमा', amavasya:'अमावस्या', vrat:'व्रत / उपवास',
+          sankranti:'संक्रांति', special:'विशेष दिन', chaturthi:'चतुर्थी'
+        }},
+  or: { appTitle:'ହିନ୍ଦୁ ପଞ୍ଚାଙ୍ଗ 2026', samvat:'ବିକ୍ରମ ସମ୍ବତ ୨୦୮୩',
+        eventsTitle:'ଆସନ୍ତା ପର୍ବ', all:'ସବୁ', festivals:'ପର୍ବ',
+        vrat:'ବ୍ରତ', ekadashi:'ଏକାଦଶୀ', purnima:'ପୂର୍ଣ୍ଣiমā',
+        legFestival:'ପର୍ବ', legEkadashi:'ଏକାଦଶୀ', legPurnima:'ପୂର୍ଣ୍ଣiমā',
+        legVrat:'ବ୍ରତ', legSankranti:'ସଂକ୍ରାନ୍ତି',
+        footer:'ହିନ୍ଦୁ ପଞ୍ଚାଙ୍ଗ କ୍ୟାଲେଣ୍ଡର 2026 • ପାରମ୍ପରିକ ହିନ୍ଦୁ ପଞ୍ଚାଙ୍ଗ ଉତ୍ସରୁ ସଂକଳିତ',
+        date:'ତାରିଖ', tithi:'ତିଥି', deity:'ଦେବତା', time:'ଶୁଭ ସମୟ', desc:'ବିବରଣ',
+        noEvents:'ଏହି ଫିଲ୍ଟର ପାଇଁ କୌଣସି ପର୍ବ ନାହିଁ', catLabels:{
+          festival:'ପ୍ରମୁଖ ପର୍ବ', navratri:'ନବରାତ୍ରି', ekadashi:'ଏକାଦଶୀ',
+          purnima:'ପୂର୍ଣ୍ଣiমā', amavasya:'ଅମାବାସ୍ୟା', vrat:'ବ୍ରତ / ଉପବାସ',
+          sankranti:'ସଂକ୍ରାନ୍ତି', special:'ବିଶେଷ ଦିନ', chaturthi:'ଚତୁର୍ଥୀ'
+        }},
+};
+
+// ══════════════════════════════════════════
+//  HELPERS
+// ══════════════════════════════════════════
+function t() { return I18N[lang]; }
+function eName(e)  { return lang==='hi'?e.nameHi : lang==='or'?e.nameOr : e.nameEn; }
+function eTithi(e) { return lang==='hi'?e.tithiHi: lang==='or'?e.tithiOr: e.tithiEn; }
+function eDesc(e)  { return lang==='hi'?e.descHi : lang==='or'?e.descOr : e.descEn; }
+function mName(m)  { return lang==='hi'?MONTHS_HI[m-1]: lang==='or'?MONTHS_OR[m-1]: MONTHS_EN[m-1]; }
+function hmName(m) { return lang==='hi'?HINDU_MONTHS_HI[m-1]: lang==='or'?HINDU_MONTHS_OR[m-1]: HINDU_MONTHS_EN[m-1]; }
+function dName(i)  { return lang==='hi'?DAYS_HI[i]: lang==='or'?DAYS_OR[i]: DAYS_EN[i]; }
+
+function fmtDate(dateStr) {
+  const [y,m,d] = dateStr.split('-');
+  return `${d} ${mName(+m)}`;
+}
+
+function getEventsForDay(m, d) {
+  return EVENTS.filter(e => e.m===m && e.d===d);
+}
+
+function getUpcomingEvents() {
+  const today = new Date();
+  const ty=today.getFullYear(), tm=today.getMonth()+1, td=today.getDate();
+  return EVENTS.filter(e =>
+    e.m > tm || (e.m===tm && e.d>=td) || ty < 2026
+  );
+}
+
+function filterEvents(events) {
+  if(activeFilter==='all') return events;
+  if(activeFilter==='festivals') return events.filter(e=>e.major);
+  if(activeFilter==='vrat') return events.filter(e=>e.vrat);
+  if(activeFilter==='ekadashi') return events.filter(e=>e.ekadashi);
+  if(activeFilter==='purnima') return events.filter(e=>e.cat==='purnima');
+  return events;
+}
+
+// ══════════════════════════════════════════
+//  RENDER
+// ══════════════════════════════════════════
+function renderApp() {
+  const tr = t();
+  document.getElementById('app-title').textContent = tr.appTitle;
+  document.getElementById('app-subtitle').textContent = tr.samvat;
+  document.getElementById('events-title').textContent = tr.eventsTitle;
+  document.getElementById('footer-text').textContent = tr.footer;
+  document.getElementById('leg-festival').textContent = tr.legFestival;
+  document.getElementById('leg-ekadashi').textContent = tr.legEkadashi;
+  document.getElementById('leg-purnima').textContent = tr.legPurnima;
+  document.getElementById('leg-vrat').textContent = tr.legVrat;
+  document.getElementById('leg-sankranti').textContent = tr.legSankranti;
+  renderDayHeaders();
+  renderCalendar();
+  renderFilters();
+  renderEvents();
+}
+
+function renderDayHeaders() {
+  const container = document.getElementById('day-headers');
+  container.innerHTML = '';
+  for(let i=0;i<7;i++){
+    const d = document.createElement('div');
+    d.className='day-header';
+    d.textContent = dName(i);
+    container.appendChild(d);
+  }
+}
+
+function renderCalendar() {
+  const tr = t();
+  document.getElementById('month-name').textContent = `${mName(currentMonth)} ${currentYear}`;
+  document.getElementById('hindu-month').textContent = hmName(currentMonth);
+
+  const grid = document.getElementById('calendar-grid');
+  grid.innerHTML='';
+
+  const firstDay = new Date(currentYear, currentMonth-1, 1).getDay();
+  const daysInMonth = new Date(currentYear, currentMonth, 0).getDate();
+  const today = new Date();
+
+  // Blank cells
+  for(let i=0;i<firstDay;i++){
+    const cell=document.createElement('div');
+    cell.className='cal-day empty';
+    grid.appendChild(cell);
+  }
+
+  // Day cells
+  for(let day=1; day<=daysInMonth; day++){
+    const events = getEventsForDay(currentMonth, day);
+    const isToday = today.getFullYear()===currentYear &&
+                    today.getMonth()+1===currentMonth &&
+                    today.getDate()===day;
+    const dow = (firstDay + day - 1) % 7;
+
+    const cell = document.createElement('div');
+    let cls = 'cal-day';
+    if(isToday) cls+=' today';
+    if(dow===0) cls+=' sunday';
+    if(dow===6) cls+=' saturday';
+    if(events.length>0) cls+=' has-events';
+    cell.className = cls;
+
+    if(events.some(e=>e.major)) {
+      const star=document.createElement('span');
+      star.className='major-star';
+      star.textContent='★';
+      cell.appendChild(star);
+    }
+
+    const numDiv=document.createElement('div');
+    numDiv.className='day-num';
+    numDiv.textContent=day;
+    cell.appendChild(numDiv);
+
+    if(events.length>0){
+      const tithi=document.createElement('div');
+      tithi.className='tithi-text';
+      tithi.textContent=eTithi(events[0]).split('•')[0].trim();
+      cell.appendChild(tithi);
+
+      const dots=document.createElement('div');
+      dots.className='event-dots';
+      const cats=[...new Set(events.map(e=>e.cat))].slice(0,3);
+      cats.forEach(c=>{
+        const dot=document.createElement('div');
+        dot.className='event-dot';
+        dot.style.background=CAT_COLORS[c]||'var(--special)';
+        dots.appendChild(dot);
+      });
+      cell.appendChild(dots);
+
+      cell.addEventListener('click',()=>showDayEvents(events, `${day} ${mName(currentMonth)}`));
+    }
+
+    grid.appendChild(cell);
+  }
+}
+
+function renderFilters() {
+  const tr=t();
+  const container=document.getElementById('filters');
+  const filters=[
+    {key:'all',label:tr.all},
+    {key:'festivals',label:tr.festivals},
+    {key:'vrat',label:tr.vrat},
+    {key:'ekadashi',label:tr.ekadashi},
+    {key:'purnima',label:tr.purnima},
+  ];
+  container.innerHTML='';
+  filters.forEach(f=>{
+    const btn=document.createElement('button');
+    btn.className='filter-pill'+(activeFilter===f.key?' active':'');
+    btn.textContent=f.label;
+    btn.onclick=()=>{activeFilter=f.key;renderFilters();renderEvents();};
+    container.appendChild(btn);
+  });
+}
+
+function renderEvents() {
+  const tr=t();
+  const upcoming=getUpcomingEvents();
+  const filtered=filterEvents(upcoming);
+  const container=document.getElementById('events-list');
+  container.innerHTML='';
+
+  if(filtered.length===0){
+    container.innerHTML=`<div class="empty-state"><div class="empty-icon">🙏</div><p>${tr.noEvents}</p></div>`;
+    return;
+  }
+
+  filtered.slice(0,30).forEach(ev=>{
+    const card=document.createElement('div');
+    card.className='event-card';
+    card.innerHTML=`
+      <div class="event-card-bar" style="background:${CAT_COLORS[ev.cat]||'var(--special)'}"></div>
+      <div class="event-card-body">
+        <div class="event-card-top">
+          <div class="event-card-name">${eName(ev)}</div>
+          <div class="event-card-date">${fmtDate(ev.date)}</div>
+        </div>
+        <div class="event-card-meta">
+          <div class="event-card-tithi">${eTithi(ev).split('•')[0].trim()}</div>
+          <div class="event-card-tag">${tr.catLabels[ev.cat]||ev.cat}</div>
+        </div>
+      </div>`;
+    card.onclick=()=>showModal(ev);
+    container.appendChild(card);
+  });
+}
+
+// ══════════════════════════════════════════
+//  MODAL
+// ══════════════════════════════════════════
+function showModal(ev) {
+  const tr=t();
+  document.getElementById('modal-cat').textContent=tr.catLabels[ev.cat]||ev.cat;
+  document.getElementById('modal-title').textContent=eName(ev);
+
+  let body=`
+    <div class="modal-info-row">
+      <span class="modal-info-icon">📅</span>
+      <div><div class="modal-info-label">${tr.date}</div>
+      <div class="modal-info-value">${fmtDate(ev.date)} 2026</div></div>
+    </div>
+    <div class="modal-info-row">
+      <span class="modal-info-icon">🌙</span>
+      <div><div class="modal-info-label">${tr.tithi}</div>
+      <div class="modal-info-value">${eTithi(ev)}</div></div>
+    </div>`;
+
+  if(ev.time){
+    body+=`<div class="modal-info-row">
+      <span class="modal-info-icon">⏰</span>
+      <div><div class="modal-info-label">${tr.time}</div>
+      <div class="modal-info-value">${ev.time}</div></div>
+    </div>`;
+  }
+
+  if(ev.deity){
+    body+=`<div class="modal-info-row">
+      <span class="modal-info-icon">🪔</span>
+      <div><div class="modal-info-label">${tr.deity}</div>
+      <div class="modal-info-value">${ev.deity}</div></div>
+    </div>`;
+  }
+
+  body+=`<div class="modal-info-row">
+    <span class="modal-info-icon">📖</span>
+    <div><div class="modal-info-label">${tr.desc}</div>
+    <div class="modal-info-value">${eDesc(ev)}</div></div>
+  </div>`;
+
+  document.getElementById('modal-body').innerHTML=body;
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function showDayEvents(events, dateLabel) {
+  if(events.length===1){ showModal(events[0]); return; }
+  const tr=t();
+  document.getElementById('modal-cat').textContent=dateLabel;
+  document.getElementById('modal-title').textContent=`${events.length} Events`;
+  let body='';
+  events.forEach(ev=>{
+    body+=`<div class="modal-info-row" style="cursor:pointer" onclick="showModal(${JSON.stringify(ev).replace(/"/g,'&quot;')})">
+      <span class="modal-info-icon">🎉</span>
+      <div><div class="modal-info-label">${tr.catLabels[ev.cat]||ev.cat}</div>
+      <div class="modal-info-value" style="font-weight:500">${eName(ev)}</div></div>
+    </div>`;
+  });
+  document.getElementById('modal-body').innerHTML=body;
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeModal(e) {
+  if(e.target===document.getElementById('modal-overlay')) closeModalDirect();
+}
+function closeModalDirect() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+// ══════════════════════════════════════════
+//  NAVIGATION
+// ══════════════════════════════════════════
+function changeMonth(dir) {
+  currentMonth += dir;
+  if(currentMonth<1){currentMonth=12;}
+  if(currentMonth>12){currentMonth=1;}
+  renderCalendar();
+}
+
+// ══════════════════════════════════════════
+//  LANGUAGE
+// ══════════════════════════════════════════
+function setLang(l) {
+  lang=l;
+  localStorage.setItem('panchang_lang',l);
+  document.getElementById('lang-screen').classList.add('hidden');
+  document.getElementById('app').style.display='block';
+  renderApp();
+}
+
+function showLangScreen() {
+  document.getElementById('lang-screen').classList.remove('hidden');
+}
+
+// ══════════════════════════════════════════
+//  PWA INSTALL
+// ══════════════════════════════════════════
+window.addEventListener('beforeinstallprompt', e=>{
+  e.preventDefault();
+  deferredPrompt=e;
+  setTimeout(()=>document.getElementById('install-banner').classList.add('show'), 3000);
+});
+
+document.getElementById('install-btn').addEventListener('click',()=>{
+  if(deferredPrompt){
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(()=>{
+      deferredPrompt=null;
+      dismissInstall();
+    });
+  }
+});
+
+function dismissInstall() {
+  document.getElementById('install-banner').classList.remove('show');
+}
+
+// ══════════════════════════════════════════
+//  SERVICE WORKER
+// ══════════════════════════════════════════
+if('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(()=>{});
+}
+
+// ══════════════════════════════════════════
+//  INIT
+// ══════════════════════════════════════════
+window.addEventListener('DOMContentLoaded', ()=>{
+  const saved=localStorage.getItem('panchang_lang');
+  if(saved){
+    lang=saved;
+    document.getElementById('lang-screen').classList.add('hidden');
+    document.getElementById('app').style.display='block';
+    renderApp();
+  }
+});
+</script>
+</body>
+</html>
