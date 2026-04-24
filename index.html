@@ -33,6 +33,8 @@
       --vrat:      #6A1B9A;
       --sankranti: #E65100;
       --special:   #00695C;
+      --grahan:    #4A148C;
+      --vivah:     #880E4F;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -674,6 +676,8 @@
     <div class="legend-item"><div class="legend-dot" style="background:var(--purnima)"></div><span id="leg-purnima">Purnima</span></div>
     <div class="legend-item"><div class="legend-dot" style="background:var(--vrat)"></div><span id="leg-vrat">Vrat</span></div>
     <div class="legend-item"><div class="legend-dot" style="background:var(--sankranti)"></div><span id="leg-sankranti">Sankranti</span></div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--grahan)"></div><span>Eclipse</span></div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--vivah)"></div><span>Vivah Muhurat</span></div>
   </div>
 
   <!-- Calendar -->
@@ -961,6 +965,107 @@ const EVENTS = [
    descHi:'गीता जयंती — भगवान श्रीकृष्ण ने इस दिन गीता का उपदेश दिया था।',
    descOr:'ଗୀତା ଜୟନ୍ତୀ — ଭଗବାନ ଶ୍ରୀକୃଷ୍ଣ ଏହି ଦିନ ଗୀତା ଉପଦେଶ ଦେଇଥିଲେ।',
    time:'', deity:'Krishna'},
+
+  // ══ GRAHAN (ECLIPSES) 2026 ══
+  {id:'grahan_mar03', date:'2026-03-03', d:3, m:3, cat:'grahan', major:true, vrat:false, ekadashi:false,
+   nameEn:'🌑 Chandra Grahan — Partial Lunar Eclipse (Visible in India)', nameHi:'🌑 चंद्र ग्रहण — आंशिक (भारत में दृश्य)', nameOr:'🌑 ଚନ୍ଦ୍ର ଗ୍ରହଣ — ଭାରତରେ ଦୃଶ୍ୟ',
+   tithiEn:'Purnima • Phalguna • Same day as Holika Dahan', tithiHi:'पूर्णिमा • फाल्गुन • होलिका दहन का दिन', tithiOr:'ପୂର୍ଣ୍ଣiমā • ଫାଲ୍ଗୁନ • ହୋଲିକା ଦହନ ଦିନ',
+   descEn:'⚠️ Partial Lunar Eclipse visible in India (Assam, Arunachal Pradesh fully; Delhi, Mumbai, Chennai partially). Eclipse: 2:16 PM – 7:53 PM IST. Sutak Kaal: 9:39 AM – 6:46 PM. During Sutak: avoid eating, cooking, temple visits. After eclipse: take bath and donate. Same day as Holika Dahan — consult priest for auspicious timing.',
+   descHi:'⚠️ आंशिक चंद्र ग्रहण — असम, अरुणाचल में पूर्ण, दिल्ली-मुंबई-चेन्नई में आंशिक। ग्रहण: 2:16 PM – 7:53 PM। सूतक काल: 9:39 AM – 6:46 PM। भोजन, मंदिर वर्जित। बाद में स्नान-दान करें। होलिका दहन भी इसी दिन।',
+   descOr:'⚠️ ଆଂଶିକ ଚନ୍ଦ୍ର ଗ୍ରହଣ — ଭାରତରେ ଦୃଶ୍ୟ। ଗ୍ରହଣ: 2:16 PM–7:53 PM। ସୂତକ: 9:39 AM–6:46 PM। ଭୋଜନ ଓ ମନ୍ଦିର ବର୍ଜ୍ୟ। ଗ୍ରହଣ ଶେଷ ପରେ ସ୍ନାନ ଓ ଦାନ।',
+   time:'Eclipse: 2:16 PM–7:53 PM | Sutak: 9:39 AM–6:46 PM', deity:''},
+
+  {id:'grahan_feb17', date:'2026-02-17', d:17, m:2, cat:'grahan', major:false, vrat:false, ekadashi:false,
+   nameEn:'☀️ Surya Grahan — Solar Eclipse (NOT Visible in India)', nameHi:'☀️ सूर्य ग्रहण — भारत में अदृश्य — सूतक नहीं', nameOr:'☀️ ସୂର୍ଯ୍ୟ ଗ୍ରହଣ — ଭାରତରେ ଅଦୃଶ୍ୟ',
+   tithiEn:'Amavasya • Magha (Not visible in India — No Sutak)', tithiHi:'अमावस्या • माघ — भारत में नहीं दिखेगा — सूतक नहीं', tithiOr:'ଅମାବାସ୍ୟା • ମାଘ — ଭାରତରେ ଦୃଶ୍ୟ ନୁହେଁ',
+   descEn:'Total Solar Eclipse visible in Antarctica region only. NOT visible in India — No Sutak Kaal applies. No religious restrictions for India.',
+   descHi:'कुल सूर्य ग्रहण — अंटार्कटिका में। भारत में नहीं दिखेगा। कोई सूतक नहीं।',
+   descOr:'ଭାରତରେ ଦୃଶ୍ୟ ନୁହେଁ। ସୂତକ ନାହିଁ।',
+   time:'NOT visible in India — No Sutak Kaal', deity:''},
+
+  {id:'grahan_aug12', date:'2026-08-12', d:12, m:8, cat:'grahan', major:false, vrat:false, ekadashi:false,
+   nameEn:'☀️ Surya Grahan — Total Solar Eclipse (NOT Visible in India)', nameHi:'☀️ सूर्य ग्रहण — भारत में अदृश्य — सूतक नहीं', nameOr:'☀️ ସୂର୍ଯ୍ୟ ଗ୍ରହଣ — ଭାରତରେ ଅଦୃଶ୍ୟ',
+   tithiEn:'Amavasya • Shravana (Visible in Europe — Not India)', tithiHi:'अमावस्या • श्रावण — यूरोप में — भारत में नहीं', tithiOr:'ଅମାବାସ୍ୟା • ଶ୍ରାବଣ — ୟୁରୋପରେ ଦୃଶ୍ୟ',
+   descEn:'Total Solar Eclipse — spectacular! Visible in Spain, Iceland, Greenland (Europe). NOT visible in India. Time: 9:04 PM – 4:25 AM IST (Aug 13). No Sutak for India.',
+   descHi:'कुल सूर्य ग्रहण — स्पेन, आइसलैंड में। भारत में नहीं। समय: 9:04 PM – 4:25 AM (13 अगस्त)।',
+   descOr:'ସ୍ପେନ, ଆଇସଲ୍ୟାଣ୍ଡରେ ଦୃଶ୍ୟ। ଭାରତରେ ନୁହେଁ।',
+   time:'9:04 PM–4:25 AM IST (NOT visible in India)', deity:''},
+
+  {id:'grahan_aug13', date:'2026-08-13', d:13, m:8, cat:'grahan', major:false, vrat:false, ekadashi:false,
+   nameEn:'🌑 Chandra Grahan — Partial Lunar Eclipse (NOT Visible in India)', nameHi:'🌑 चंद्र ग्रहण — भारत में अदृश्य', nameOr:'🌑 ଚନ୍ଦ୍ର ଗ୍ରହଣ — ଭାରତରେ ଅଦୃଶ୍ୟ',
+   tithiEn:'Purnima • Shravana (Visible in Americas — Not India)', tithiHi:'पूर्णिमा • श्रावण — अमेरिका में — भारत में नहीं', tithiOr:'ପୂର୍ଣ୍ଣiমā • ଶ୍ରାବଣ — ଆମେରିକାରେ ଦୃଶ୍ୟ',
+   descEn:'Partial Lunar Eclipse visible in Americas and Africa only. NOT visible in India. Time: 9:00 PM – 1:30 AM IST. No Sutak Kaal for India.',
+   descHi:'आंशिक चंद्र ग्रहण — अमेरिका-अफ्रीका में। भारत में नहीं। सूतक नहीं।',
+   descOr:'ଭାରତରେ ଦୃଶ୍ୟ ନୁହେଁ। ସୂତକ ନାହିଁ।',
+   time:'9:00 PM–1:30 AM IST (NOT visible in India)', deity:''},
+
+  // ══ SHUBH VIVAH MUHURAT 2026 ══
+  {id:'vivah_feb05', date:'2026-02-05', d:5, m:2, cat:'vivah', major:false, vrat:false, ekadashi:false,
+   nameEn:'💍 Shubh Vivah Muhurat', nameHi:'💍 शुभ विवाह मुहूर्त', nameOr:'💍 ଶୁଭ ବିବାହ ମୁହୂର୍ତ',
+   tithiEn:'Magha — Auspicious for Marriage', tithiHi:'माघ — विवाह के लिए शुभ', tithiOr:'ମାଘ — ବିବାହ ପାଇଁ ଶୁଭ',
+   descEn:'Shubh Vivah Muhurat — Auspicious wedding date in February. Consult a Pandit for exact Lagna time based on your location and Kundli.',
+   descHi:'शुभ विवाह मुहूर्त — फरवरी में विवाह के लिए शुभ। अपने स्थान के अनुसार पंडित से लग्न समय पूछें।',
+   descOr:'ଶୁଭ ବିବାହ ମୁହୂର୍ତ। ପୁରୋହିତଙ୍କ ସହ ଲଗ୍ନ ସମୟ ଜାଣନ୍ତୁ।',
+   time:'Morning: 7:00–9:30 AM | Midday: 11:00 AM–12:30 PM', deity:''},
+  {id:'vivah_feb14', date:'2026-02-14', d:14, m:2, cat:'vivah', major:false, vrat:false, ekadashi:false,
+   nameEn:'💍 Shubh Vivah Muhurat (Valentine's Day!)', nameHi:'💍 शुभ विवाह मुहूर्त (वेलेंटाइन दिवस)', nameOr:'💍 ଶୁଭ ବିବାହ ମୁହୂର୍ତ',
+   tithiEn:'Magha — Very auspicious — Valentine's Day + Wedding Muhurat!', tithiHi:'माघ — वेलेंटाइन दिवस + शुभ मुहूर्त', tithiOr:'ମାଘ — ଶୁଭ',
+   descEn:'Valentine's Day + Shubh Vivah Muhurat! Double auspicious. Great for weddings and engagements.',
+   descHi:'वेलेंटाइन दिवस पर शुभ विवाह मुहूर्त! दोगुना शुभ।',
+   descOr:'ଭ୍ୟାଲେଣ୍ଟାଇନ ଡେ ଉପରେ ଶୁଭ ବିବାହ!',
+   time:'Morning: 7:00–9:30 AM | Evening: 4:30–6:00 PM', deity:''},
+  {id:'vivah_feb21', date:'2026-02-21', d:21, m:2, cat:'vivah', major:false, vrat:false, ekadashi:false,
+   nameEn:'💍 Shubh Vivah Muhurat (Hasta Nakshatra)', nameHi:'💍 शुभ विवाह मुहूर्त — हस्त नक्षत्र', nameOr:'💍 ଶୁଭ ବିବାହ — ହସ୍ତ ନକ୍ଷତ୍ର',
+   tithiEn:'Phalguna — Hasta Nakshatra — Excellent for family harmony', tithiHi:'फाल्गुन — हस्त नक्षत्र — पारिवारिक सद्भाव के लिए उत्तम', tithiOr:'ଫାଲ୍ଗୁନ — ହସ୍ତ ନକ୍ଷତ୍ର',
+   descEn:'Hasta Nakshatra — One of the most auspicious Nakshatras for marriage. Excellent for family harmony. Best date in February.',
+   descHi:'हस्त नक्षत्र — विवाह के लिए सर्वोत्तम नक्षत्रों में से एक। पारिवारिक सद्भाव के लिए अत्यंत शुभ।',
+   descOr:'ହସ୍ତ ନକ୍ଷତ୍ର — ପରିବାର ଶାନ୍ତି ପାଇଁ ଉତ୍ତମ।',
+   time:'Morning: 7:00–9:30 AM | Midday: 11:00 AM–12:30 PM', deity:''},
+  {id:'vivah_apr17', date:'2026-04-17', d:17, m:4, cat:'vivah', major:true, vrat:false, ekadashi:false,
+   nameEn:'💍 Shubh Vivah — Akshaya Tritiya (ABHUJH MUHURAT!)', nameHi:'💍 अक्षय तृतीया — अबूझ मुहूर्त! सारा दिन शुभ', nameOr:'💍 ଅକ୍ଷୟ ତୃତୀୟା — ସ୍ୱୟଂ ସିଦ୍ଧ ମୁହୂର୍ତ!',
+   tithiEn:'Vaisakha — Akshaya Tritiya — SELF-PROVEN MUHURAT — No Pandit needed!', tithiHi:'वैशाख — अक्षय तृतीया — अबूझ मुहूर्त — बिना पंडित के पूरा दिन शुभ!', tithiOr:'ବୈଶାଖ — ଅକ୍ଷୟ ତୃତୀୟା — ସ୍ୱୟଂ ସିଦ୍ଧ!',
+   descEn:'🌟 Akshaya Tritiya — Abhujh Muhurat! The ENTIRE DAY is auspicious for marriage without needing to consult any Pandit or Panchang. One of only 4 self-proven auspicious days in Hindu year. Most popular wedding date in India.',
+   descHi:'🌟 अक्षय तृतीया — अबूझ मुहूर्त! पूरा दिन बिना पंचांग देखे विवाह कर सकते हैं। हिंदू वर्ष के केवल 4 स्वयंसिद्ध शुभ दिनों में से एक। भारत में सबसे लोकप्रिय विवाह तिथि।',
+   descOr:'🌟 ସ୍ୱୟଂ ସିଦ୍ଧ ମୁହୂର୍ତ! ସାରା ଦିନ ଯେ କୌଣସି ସମୟ ବିବାହ ଶୁଭ। ପୁରୋହିତ ଆବଶ୍ୟକ ନାହିଁ।',
+   time:'🌟 ENTIRE DAY auspicious — No Pandit consultation needed!', deity:''},
+  {id:'vivah_may05', date:'2026-05-05', d:5, m:5, cat:'vivah', major:false, vrat:false, ekadashi:false,
+   nameEn:'💍 Shubh Vivah Muhurat (Peak Season)', nameHi:'💍 शुभ विवाह मुहूर्त — मुख्य सीजन', nameOr:'💍 ଶୁଭ ବିବାହ — ମୁଖ୍ୟ ଋତୁ',
+   tithiEn:'Vaisakha — Peak wedding season — many auspicious dates', tithiHi:'वैशाख — मई में सर्वाधिक शुभ मुहूर्त', tithiOr:'ବୈଶାଖ — ମଇ ମୁଖ୍ୟ ଋତୁ',
+   descEn:'May is peak wedding season! Auspicious dates: 1, 3, 5, 6, 7, 8, 13, 14 May. Warm weather, long days, seasonal flowers.',
+   descHi:'मई — विवाह का मुख्य सीजन! शुभ तिथियां: 1, 3, 5, 6, 7, 8, 13, 14 मई।',
+   descOr:'ମଇ — ବିବାହ ମୁଖ୍ୟ ଋତୁ! ଶୁଭ ତାରିଖ: 1, 3, 5, 6, 7, 8, 13, 14।',
+   time:'Morning: 7:00–9:30 AM | Midday: 11:00 AM–12:30 PM', deity:''},
+  {id:'vivah_may13', date:'2026-05-13', d:13, m:5, cat:'vivah', major:false, vrat:false, ekadashi:false,
+   nameEn:'💍 Shubh Vivah Muhurat', nameHi:'💍 शुभ विवाह मुहूर्त', nameOr:'💍 ଶୁଭ ବିବାହ ମୁହୂର୍ତ',
+   tithiEn:'Jyeshtha — Auspicious for marriage', tithiHi:'ज्येष्ठ — विवाह के लिए शुभ', tithiOr:'ଜ୍ୟେଷ୍ଠ — ଶୁଭ',
+   descEn:'Shubh Vivah Muhurat in May.', descHi:'मई में शुभ विवाह मुहूर्त।', descOr:'ମଇ ଶୁଭ ବିବାହ।',
+   time:'Morning: 7:00–9:30 AM', deity:''},
+  {id:'vivah_jun22', date:'2026-06-22', d:22, m:6, cat:'vivah', major:false, vrat:false, ekadashi:false,
+   nameEn:'💍 Shubh Vivah Muhurat', nameHi:'💍 शुभ विवाह मुहूर्त', nameOr:'💍 ଶୁଭ ବିବାହ ମୁହୂର୍ତ',
+   tithiEn:'Jyeshtha — Auspicious for marriage (Limited in June)', tithiHi:'ज्येष्ठ — जून में सीमित मुहूर्त: 21–27, 29 तारीख', tithiOr:'ଜ୍ୟେଷ୍ଠ — ଜୁନ ସୀମିତ ମୁହୂର୍ତ',
+   descEn:'Shubh Vivah Muhurat in June. Limited dates due to planetary transitions. Auspicious dates: 21–27, 29 June.',
+   descHi:'जून में शुभ विवाह मुहूर्त। शुभ तिथियां: 21, 22, 23, 24, 25, 26, 27, 29 जून।',
+   descOr:'ଜୁନ ବିବାହ ମୁହୂର୍ତ: 21–27, 29।',
+   time:'Morning: 7:00–9:30 AM', deity:''},
+  {id:'vivah_nov21', date:'2026-11-21', d:21, m:11, cat:'vivah', major:false, vrat:false, ekadashi:false,
+   nameEn:'💍 Shubh Vivah Muhurat (Post-Chaturmas Season Begins!)', nameHi:'💍 शुभ विवाह मुहूर्त — चातुर्मास के बाद सीजन शुरू!', nameOr:'💍 ଶୁଭ ବିବାହ — ଚାତୁର୍ମାସ ପରେ ଋତୁ ଆରମ୍ଭ!',
+   tithiEn:'Margashirsha — Wedding season resumes after 4-month Chaturmas pause', tithiHi:'मार्गशीर्ष — 4 महीने के बाद विवाह सीजन फिर शुरू', tithiOr:'ମାର୍ଗଶିର — ୪ ମାସ ପରେ ବିବାହ ଋତୁ',
+   descEn:'Wedding season resumes after Chaturmas (Jul–Oct pause). November auspicious dates: 21, 24, 25, 26.',
+   descHi:'चातुर्मास के बाद विवाह सीजन शुरू! नवंबर शुभ तिथियां: 21, 24, 25, 26।',
+   descOr:'ଚାତୁର୍ମାସ ଶେଷ! ନଭେମ୍ବର ଶୁଭ: 21, 24, 25, 26।',
+   time:'Morning: 7:00–9:30 AM | Midday: 11:00 AM–12:30 PM', deity:''},
+  {id:'vivah_dec02', date:'2026-12-02', d:2, m:12, cat:'vivah', major:false, vrat:false, ekadashi:false,
+   nameEn:'💍 Shubh Vivah Muhurat', nameHi:'💍 शुभ विवाह मुहूर्त', nameOr:'💍 ଶୁଭ ବିବାହ ମୁହୂର୍ତ',
+   tithiEn:'Margashirsha — Winter wedding season', tithiHi:'मार्गशीर्ष — शीतकालीन विवाह सीजन', tithiOr:'ମାର୍ଗଶିର — ଶୀତ ବିବାହ ଋତୁ',
+   descEn:'December wedding season! Auspicious dates: 2, 3, 4, 5, 11, 12 December.',
+   descHi:'दिसंबर विवाह सीजन! शुभ तिथियां: 2, 3, 4, 5, 11, 12।',
+   descOr:'ଡିସେମ୍ବର ଶୁଭ: 2, 3, 4, 5, 11, 12।',
+   time:'Morning: 7:00–9:30 AM', deity:''},
+  {id:'vivah_dec11', date:'2026-12-11', d:11, m:12, cat:'vivah', major:false, vrat:false, ekadashi:false,
+   nameEn:'💍 Shubh Vivah Muhurat', nameHi:'💍 शुभ विवाह मुहूर्त', nameOr:'💍 ଶୁଭ ବିବାହ ମୁହୂର୍ତ',
+   tithiEn:'Paush — Auspicious for marriage', tithiHi:'पौष — विवाह के लिए शुभ', tithiOr:'ପୌଷ — ଶୁଭ',
+   descEn:'Shubh Vivah Muhurat in December.', descHi:'दिसंबर में शुभ विवाह मुहूर्त।', descOr:'ଡିସେମ୍ବର ଶୁଭ ବିବାହ।',
+   time:'Morning: 7:00–9:30 AM', deity:''},
 ];
 
 // ══════════════════════════════════════════
@@ -1045,6 +1150,8 @@ function filterEvents(events) {
   if(activeFilter==='vrat') return events.filter(e=>e.vrat);
   if(activeFilter==='ekadashi') return events.filter(e=>e.ekadashi);
   if(activeFilter==='purnima') return events.filter(e=>e.cat==='purnima');
+  if(activeFilter==='grahan') return events.filter(e=>e.cat==='grahan');
+  if(activeFilter==='vivah') return events.filter(e=>e.cat==='vivah');
   return events;
 }
 
@@ -1159,6 +1266,8 @@ function renderFilters() {
     {key:'vrat',label:tr.vrat},
     {key:'ekadashi',label:tr.ekadashi},
     {key:'purnima',label:tr.purnima},
+    {key:'grahan',label:tr.grahan},
+    {key:'vivah',label:tr.vivah},
   ];
   container.innerHTML='';
   filters.forEach(f=>{
@@ -1345,3 +1454,6 @@ window.addEventListener('DOMContentLoaded', ()=>{
 </script>
 </body>
 </html>
+<script>
+// This script block intentionally left — data injected via main script above
+</script>
