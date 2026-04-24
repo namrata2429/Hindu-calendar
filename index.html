@@ -1418,15 +1418,7 @@ window.addEventListener('beforeinstallprompt', e=>{
   setTimeout(()=>document.getElementById('install-banner').classList.add('show'), 3000);
 });
 
-document.getElementById('install-btn').addEventListener('click',()=>{
-  if(deferredPrompt){
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(()=>{
-      deferredPrompt=null;
-      dismissInstall();
-    });
-  }
-});
+// install-btn listener moved to DOMContentLoaded below
 
 function dismissInstall() {
   document.getElementById('install-banner').classList.remove('show');
@@ -1443,6 +1435,21 @@ if('serviceWorker' in navigator) {
 //  INIT
 // ══════════════════════════════════════════
 window.addEventListener('DOMContentLoaded', ()=>{
+  // Install button
+  const installBtn = document.getElementById('install-btn');
+  if(installBtn){
+    installBtn.addEventListener('click',()=>{
+      if(deferredPrompt){
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(()=>{
+          deferredPrompt=null;
+          dismissInstall();
+        });
+      }
+    });
+  }
+
+  // Language init
   const saved=localStorage.getItem('panchang_lang');
   if(saved){
     lang=saved;
@@ -1454,6 +1461,4 @@ window.addEventListener('DOMContentLoaded', ()=>{
 </script>
 </body>
 </html>
-<script>
-// This script block intentionally left — data injected via main script above
-</script>
+
