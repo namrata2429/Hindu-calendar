@@ -1459,6 +1459,15 @@ window.addEventListener('DOMContentLoaded', ()=>{
     renderApp();
   }
 });
+
+// Make functions globally accessible for inline HTML onclick handlers
+window.setLang = setLang;
+window.showLangScreen = showLangScreen;
+window.changeMonth = changeMonth;
+window.closeModal = closeModal;
+window.closeModalDirect = closeModalDirect;
+window.dismissInstall = dismissInstall;
+window.showModal = showModal;
 </script>
 </body>
 </html>
